@@ -5,5 +5,14 @@
   "Home": {
     "title": "البيت",
     "description": "Welcome to the home page"
+  },
+  "Navigation": {
+    "Home": "الصفحة الرئيسة",
+    "About": "عن الجمعية",
+    "Services": "خدماتنا",
+    "Contact": "اتصل بنا",
+    "Lang": "עברית",
+    "Login": "تسجيل الدخول",
+    "Donate": "تبرع"
   }
 }

@@ -5,5 +5,14 @@
   "Home": {
     "title": "בית",
     "description": "Welcome to the home page"
+  },
+  "Navigation": {
+    "Home": "דף ראשי",
+    "About": "אודות",
+    "Contact": "צור קשר",
+    "Services": "שירותים",
+    "Lang": "العربية",
+    "Login": "התחברות",
+    "Donate": "תרומה"
   }
 }
