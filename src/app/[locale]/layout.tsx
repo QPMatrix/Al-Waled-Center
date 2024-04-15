@@ -1,20 +1,27 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "../globals.css";
 import Navbar from "@/components/navigation/navbar";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  const t = await getTranslations({ locale, namespace: "Metadata" });
 
-const inter = Inter({ subsets: ["latin"] });
-
-export default function RootLayout({
+  return {
+    title: t("title"),
+  };
+}
+export default function LocaleLayout({
   children,
   params: { locale },
-}: Readonly<{
+}: {
   children: React.ReactNode;
   params: { locale: string };
-}>) {
+}) {
+  unstable_setRequestLocale(locale);
   return (
     <html lang={locale}>
-      <body className={inter.className}>
+      <body>
         <Navbar />
         {children}
       </body>
