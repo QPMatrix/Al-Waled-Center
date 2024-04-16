@@ -17,7 +17,7 @@ const Navbar = (props: Props) => {
   const t = useTranslations("Navigation");
 
   return (
-    <div className="flex flex-row justify-between items-center  bg-[#38383b]">
+    <div className="flex flex-row justify-between items-center bg-[#38383b] fixed top-0 z-10 w-full">
       <aside className="pl-5 flex flex-row gap-2  ">
         <Button
           variant="outline"

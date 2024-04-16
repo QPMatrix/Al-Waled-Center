@@ -1,6 +1,7 @@
 import Navbar from "@/components/navigation/navbar";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider, useMessages } from "next-intl";
+import Footer from "@/components/footer/footer";
 
 export async function generateMetadata({
   params: { locale },
@@ -13,6 +14,7 @@ export async function generateMetadata({
     title: t("title"),
   };
 }
+
 export default function LocaleLayout({
   children,
   params: { locale },
@@ -25,10 +27,11 @@ export default function LocaleLayout({
   unstable_setRequestLocale(locale);
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body suppressHydrationWarning>
+      <body suppressHydrationWarning className="flex flex-col min-h-screen">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Navbar locale={locale} />
-          {children}
+          <main className="flex-grow">{children}</main>
+          <Footer locale={locale} />
         </NextIntlClientProvider>
       </body>
     </html>
