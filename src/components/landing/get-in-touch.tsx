@@ -11,8 +11,8 @@ const GetInTouch = () => {
           Over 2,000 students have learned to ride with us.
         </h1>
         <p className="mt-2 text-sm md:text-base lg:text-lg">
-          Trust us with your children's horse riding lessons and enjoy peace of
-          mind at work
+          Trust us with your children&apos;s horse riding lessons and enjoy
+          peace of mind at work
         </p>
         <Button className="mt-10">Get in Touch</Button>
       </div>
