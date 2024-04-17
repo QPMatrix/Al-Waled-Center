@@ -16,9 +16,7 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 
-type Props = {};
-
-const ContactUsForm = (props: Props) => {
+const ContactUsForm = () => {
   const t = useTranslations("Forms.ContactUs");
   const formSchema = z.object({
     name: z.string().min(2),
@@ -31,16 +29,16 @@ const ContactUsForm = (props: Props) => {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const handleSubmit = (values: z.infer<typeof formSchema>) => {
     console.log(values);
   };
   return (
-    <div className="w-full md:w-1/2  lg:w-1/3 mx-auto shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="w-full md:w-1/2 lg:w-1/3 mx-auto shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="text-right">
+        <form onSubmit={form.handleSubmit(handleSubmit)} className="text-right">
           <FormField
             control={form.control}
-            name="name"
+            name={"name"}
             render={({ field }) => (
               <FormItem className="mb-4">
                 <FormLabel className="block text-gray-700 text-sm font-bold mb-2">
@@ -123,10 +121,7 @@ const ContactUsForm = (props: Props) => {
               </FormItem>
             )}
           />
-          <Button
-            type="submit"
-            className="bg-[#38383b] hover:bg-black text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
-          >
+          <Button className="bg-[#38383b] hover:bg-black text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">
             {t("Submit")}
           </Button>
         </form>
