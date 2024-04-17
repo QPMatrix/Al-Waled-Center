@@ -90,7 +90,13 @@ const Sidebar = ({ locale }: { locale: string }) => {
             </div>
           </Link>
           <Button variant="ghost">
-            <Link href={locale === "ar" ? "/he" : "/ar"}>
+            <Link
+              href={
+                pathname.includes("he")
+                  ? `/ar/${pathname.split("/")[2] || ""}`
+                  : `/he/${pathname.split("/")[2] || ""}`
+              }
+            >
               <p className="text-[#7f7f83] hover:text-[#c0c0c8]">{t("Lang")}</p>
             </Link>
           </Button>

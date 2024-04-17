@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { Button } from "../ui/button";
 import Sidebar from "./sidebar";
+import { useRouter } from "next/navigation";
 type Props = {
   locale: string;
 };
@@ -15,7 +16,6 @@ type Props = {
 const Navbar = (props: Props) => {
   const pathname = usePathname();
   const t = useTranslations("Navigation");
-
   return (
     <div className="flex flex-row justify-between items-center bg-[#38383b] fixed top-0 z-10 w-full">
       <aside className="pl-5 flex flex-row gap-2  ">
@@ -24,7 +24,7 @@ const Navbar = (props: Props) => {
           size="sm"
           className=" rounded-xl hidden md:block"
         >
-          {t("Contact")}
+          <Link href={`/${props.locale}/contactus`}>{t("Contact")}</Link>
         </Button>
         <Button
           variant="outline"
@@ -87,7 +87,13 @@ const Navbar = (props: Props) => {
               {t("Donate")}
             </p>
           </Link>
-          <Link href={props.locale === "he" ? "ar" : "he"}>
+          <Link
+            href={
+              pathname.includes("he")
+                ? `/ar/${pathname.split("/")[2] || ""}`
+                : `/he/${pathname.split("/")[2] || ""}`
+            }
+          >
             <p className="text-[#7f7f83] hover:text-[#c0c0c8] underline-offset-2">
               {t("Lang")}
             </p>
