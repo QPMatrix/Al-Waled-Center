@@ -3,8 +3,10 @@ import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
 import { ChevronLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-const Hero = () => {
+const Hero = ({ locale }: { locale: string }) => {
+  const router = useRouter();
   const t = useTranslations("Hero");
   return (
     <div className="relative flex items-center justify-end w-full h-[400px] md:h-[600px] lg:h-[800px]">
@@ -20,7 +22,10 @@ const Hero = () => {
         </h1>
         <p className="text-lg md:text-xl lg:text-2xl ">{t("Description")}</p>
         <div className="mt-10">
-          <Button className="bg-white text-black rounded-xl hover:bg-gray-500 hover:text-white px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4">
+          <Button
+            onClick={() => router.push(`${locale}/contactus`)}
+            className="bg-white text-black rounded-xl hover:bg-gray-500 hover:text-white px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4"
+          >
             <ChevronLeft size={16} className="ml-4 " />
             {t("Button")}
           </Button>
