@@ -103,9 +103,6 @@ const Sidebar = ({ locale }: { locale: string }) => {
         </div>
         <SheetFooter>
           <div className="flex  flex-col justify-center bottom-0 mt-40 items-center">
-            <Button variant="ghost" className="mb-10">
-              {t("Login")}
-            </Button>
             <Button variant="outline" className=" rounded-xl w-full ">
               {t("Contact")}
             </Button>

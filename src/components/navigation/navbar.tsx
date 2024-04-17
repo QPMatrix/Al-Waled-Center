@@ -14,6 +14,7 @@ type Props = {
 };
 
 const Navbar = (props: Props) => {
+  const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations("Navigation");
   return (
@@ -30,6 +31,7 @@ const Navbar = (props: Props) => {
           variant="outline"
           size="sm"
           className="rounded-xl bg-[#38383b] border text-[#727273] border-[#727273] hover:text-black  hidden md:block"
+          onClick={() => router.push(`/${props.locale}/auth/login`)}
         >
           {t("Login")}
         </Button>

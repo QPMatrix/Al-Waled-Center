@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 export default function Home() {
   const pathname = usePathname();
   const path = pathname.split("/")[1];
-  console.log(path);
+
   return (
     <main className="w-full h-full">
       <Hero locale={path} />
