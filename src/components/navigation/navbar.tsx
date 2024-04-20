@@ -15,7 +15,7 @@ type Props = {
 };
 
 const Navbar = (props: Props) => {
-  const user = useUser();
+  const { user } = useUser();
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations("Navigation");
@@ -29,7 +29,7 @@ const Navbar = (props: Props) => {
         >
           <Link href={`/${props.locale}/contactus`}>{t("Contact")}</Link>
         </Button>
-        {!user.isSignedIn ? (
+        {!user ? (
           <Button
             variant="outline"
             size="sm"
@@ -41,7 +41,14 @@ const Navbar = (props: Props) => {
         ) : (
           <UserButton afterSignOutUrl="/" />
         )}
-
+        {user?.publicMetadata?.role === "admin" && (
+          <Button
+            className="rounded-xl text-white hover:text-black"
+            variant="ghost"
+          >
+            <Link href="/admin/dashboard">ממשק מנהל</Link>
+          </Button>
+        )}
         <div className="block md:hidden">
           <Sidebar locale={props.locale} />
         </div>

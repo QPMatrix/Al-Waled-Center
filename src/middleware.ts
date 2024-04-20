@@ -1,6 +1,5 @@
 import createMiddleware from "next-intl/middleware";
 import { authMiddleware } from "@clerk/nextjs";
-
 const intlMiddleware = createMiddleware({
   locales: ["ar", "he"],
 
@@ -13,5 +12,5 @@ export default authMiddleware({
   publicRoutes: (req) => !req.url.includes("/admin"),
 });
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ["/((?!.+\\.[\\w]+$|_next|admin).*)", "/", "/(api|trpc)(.*)"],
 };
