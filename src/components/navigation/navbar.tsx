@@ -9,11 +9,13 @@ import React from "react";
 import { Button } from "../ui/button";
 import Sidebar from "./sidebar";
 import { useRouter } from "next/navigation";
+import { UserButton, useUser } from "@clerk/nextjs";
 type Props = {
   locale: string;
 };
 
 const Navbar = (props: Props) => {
+  const user = useUser();
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations("Navigation");
@@ -27,14 +29,19 @@ const Navbar = (props: Props) => {
         >
           <Link href={`/${props.locale}/contactus`}>{t("Contact")}</Link>
         </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          className="rounded-xl bg-[#38383b] border text-[#727273] border-[#727273] hover:text-black  hidden md:block"
-          onClick={() => router.push(`/${props.locale}/auth/login`)}
-        >
-          {t("Login")}
-        </Button>
+        {!user.isSignedIn ? (
+          <Button
+            variant="outline"
+            size="sm"
+            className="rounded-xl bg-[#38383b] border text-[#727273] border-[#727273] hover:text-black  hidden md:block"
+            onClick={() => router.push(`/auth/sign-in`)}
+          >
+            {t("Login")}
+          </Button>
+        ) : (
+          <UserButton afterSignOutUrl="/" />
+        )}
+
         <div className="block md:hidden">
           <Sidebar locale={props.locale} />
         </div>
