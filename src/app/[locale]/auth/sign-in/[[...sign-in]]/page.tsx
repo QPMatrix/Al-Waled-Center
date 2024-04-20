@@ -4,7 +4,7 @@ import React from "react";
 const Page = () => {
   return (
     <div className="flex justify-center items-center min-h-screen text-right">
-      <SignIn signUpUrl="/auth/sign-up" afterSignInUrl="/" />
+      <SignIn signUpUrl="/auth/sign-up" afterSignInUrl="/api/auth/" />
     </div>
   );
 };
