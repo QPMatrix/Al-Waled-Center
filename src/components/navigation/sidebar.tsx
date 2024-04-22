@@ -21,6 +21,7 @@ const Sidebar = ({ locale }: { locale: string }) => {
       <SheetContent
         side="left"
         className="bg-[#38383b] text-[#7f7f83] hover:text-[#c0c0c8]"
+        showX
       >
         <nav className="flex flex-col gap-y-4 mt-10 justify-end items-end ">
           <Button variant="ghost">

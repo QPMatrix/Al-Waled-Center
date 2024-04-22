@@ -41,7 +41,7 @@ const Navbar = (props: Props) => {
         ) : (
           <UserButton afterSignOutUrl="/" />
         )}
-        {user?.publicMetadata?.role === "admin" && (
+        {user && (
           <Button
             className="rounded-xl text-white hover:text-black"
             variant="ghost"

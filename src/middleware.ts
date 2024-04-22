@@ -7,10 +7,12 @@ const intlMiddleware = createMiddleware({
 });
 export default authMiddleware({
   beforeAuth: (req) => {
-    return intlMiddleware(req);
+    if (!req.url.includes("/admin")) {
+      return intlMiddleware(req);
+    }
   },
   publicRoutes: (req) => !req.url.includes("/admin"),
 });
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next|admin).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
