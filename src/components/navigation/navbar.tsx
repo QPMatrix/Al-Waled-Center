@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button } from "../ui/button";
 import Sidebar from "./sidebar";
 import { useRouter } from "next/navigation";
@@ -18,21 +18,9 @@ type Props = {
 
 const Navbar = (props: Props) => {
   const currentUser = useUser();
-  const [user, setUser] = useState<User>();
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations("Navigation");
-  if (currentUser) {
-    useEffect(() => {
-      const fetchUser = async () => {
-        const res = await axios.get("/api/user");
-        if (res.data) {
-          setUser(res.data);
-        }
-      };
-      fetchUser();
-    }, [currentUser]);
-  }
 
   return (
     <div className="flex flex-row justify-between items-center bg-[#38383b] fixed top-0 z-10 w-full">
@@ -56,7 +44,7 @@ const Navbar = (props: Props) => {
         ) : (
           <UserButton afterSignOutUrl="/" />
         )}
-        {user && user.role == "admin" ? (
+        {currentUser && currentUser.user?.publicMetadata.role == "admin" ? (
           <Button
             className="rounded-xl text-white hover:text-black"
             variant="ghost"

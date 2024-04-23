@@ -8,19 +8,19 @@ const AdminRoutes = [
     title: "משתמשים",
   },
   {
-    path: "/admin/courses",
+    path: "/admin/dashboard/courses",
     title: "קורסים",
   },
   {
-    path: "/admin/services",
+    path: "/admin/dashboard/services",
     title: "שירותים",
   },
   {
-    path: "/admin/translator",
+    path: "/admin/dashboard/translator",
     title: "תרגום דפים",
   },
   {
-    path: "/admin/gallery",
+    path: "/admin/dashboard/gallery",
     title: "גלריה",
   },
 ];
