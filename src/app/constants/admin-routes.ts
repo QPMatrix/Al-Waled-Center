@@ -4,7 +4,7 @@ const AdminRoutes = [
     title: "לוח בקרה",
   },
   {
-    path: "/admin/users",
+    path: "/admin/dashboard/users",
     title: "משתמשים",
   },
   {

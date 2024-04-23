@@ -5,20 +5,35 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import Sidebar from "./sidebar";
 import { useRouter } from "next/navigation";
 import { UserButton, useUser } from "@clerk/nextjs";
+import axios from "axios";
+import { User } from "@prisma/client";
 type Props = {
   locale: string;
 };
 
 const Navbar = (props: Props) => {
-  const { user } = useUser();
+  const currentUser = useUser();
+  const [user, setUser] = useState<User>();
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations("Navigation");
+  if (currentUser) {
+    useEffect(() => {
+      const fetchUser = async () => {
+        const res = await axios.get("/api/user");
+        if (res.data) {
+          setUser(res.data);
+        }
+      };
+      fetchUser();
+    }, [currentUser]);
+  }
+
   return (
     <div className="flex flex-row justify-between items-center bg-[#38383b] fixed top-0 z-10 w-full">
       <aside className="pl-5 flex flex-row gap-2  ">
@@ -29,7 +44,7 @@ const Navbar = (props: Props) => {
         >
           <Link href={`/${props.locale}/contactus`}>{t("Contact")}</Link>
         </Button>
-        {!user ? (
+        {!currentUser ? (
           <Button
             variant="outline"
             size="sm"
@@ -41,13 +56,15 @@ const Navbar = (props: Props) => {
         ) : (
           <UserButton afterSignOutUrl="/" />
         )}
-        {user && (
+        {user && user.role == "admin" ? (
           <Button
             className="rounded-xl text-white hover:text-black"
             variant="ghost"
           >
             <Link href="/admin/dashboard">ממשק מנהל</Link>
           </Button>
+        ) : (
+          ""
         )}
         <div className="block md:hidden">
           <Sidebar locale={props.locale} />

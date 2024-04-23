@@ -14,5 +14,5 @@ export default authMiddleware({
   publicRoutes: (req) => !req.url.includes("/admin"),
 });
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ["/((?!.+\\.[\\w]+$|_next|favicon.ico).*)", "/", "/(api|trpc)(.*)"],
 };
